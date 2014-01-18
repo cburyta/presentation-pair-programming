@@ -1,0 +1,35 @@
+{
+    "name": "presentation/pair-programming-tools",
+    "description": "Presentation on pair programming tools and methods.",
+    "require": {
+        "pawka/phrozn": "dev-use-less-dot-php",
+        "oyejorge/less.php": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/streamlinesocial/phrozn.git"
+        }
+    ],
+    "require-dev": {
+        "phing/phing": "dev-master"
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Chris Buryta",
+            "email": "chris@streamlinesocial.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "config": {
+        "bin-dir": "bin"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "mkdir -p script",
+            "rm -f bin/phr",
+            "ln -s ../vendor/pawka/phrozn/bin/phr.php bin/phr"
+        ]
+    }
+}
