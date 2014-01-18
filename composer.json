@@ -27,7 +27,12 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "mkdir -p script",
+            "mkdir -p bin",
+            "rm -f bin/phr",
+            "ln -s ../vendor/pawka/phrozn/bin/phr.php bin/phr",
+        ],
+        "post-install-cmd": [
+            "mkdir -p bin",
             "rm -f bin/phr",
             "ln -s ../vendor/pawka/phrozn/bin/phr.php bin/phr"
         ]

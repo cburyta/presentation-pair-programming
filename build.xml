@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<project name="Phrozn Site" description="Simple PHING Build File" default="compile" >
+
+    <!-- ========================================================================== -->
+    <!-- Target: compile                                                            -->
+    <!-- ========================================================================== -->
+    <target
+        name="compile"
+        description="Compiles Phrozn site from the src directory source files."
+        depends="init">
+        <exec command="php bin/phr up src public" escape="false" passthru="true" />
+    </target>
+
+    <!-- ========================================================================== -->
+    <!-- Target: init                                                               -->
+    <!-- Initial project init, can be used to create the Phrozn structure from      -->
+    <!-- scratch so you can get going quickly. Not used often except initially      -->
+    <!-- ========================================================================== -->
+    <target name="init" description="Init the app after the initial composer install">
+        <mkdir dir="bin" />
+        <mkdir dir="public" />
+
+        <delete file="bin/phr" quiet="true" />
+        <symlink target="../vendor/pawka/phrozn/bin/phr.php" link="bin/phr" />
+
+        <if>
+            <not>
+                <available file='src' type='dir' />
+            </not>
+            <then>
+                <echo message="Src directory does not yet exist - creating new Phrozn project."/>
+                <exec command="php bin/phr init src" escape="false" passthru="true" />
+            </then>
+        </if>
+    </target>
+
+</project>
